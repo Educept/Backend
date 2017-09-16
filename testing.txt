@@ -1,0 +1,11 @@
+{
+	"email" : "123@gmail.com",
+	"password" : "123456"
+}
+
+
+{
+  "name":"Ryu",
+  "email": "ryu@gmail.com",
+  "imageUrl": "123dsfs"
+}

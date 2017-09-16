@@ -1,0 +1,29 @@
+{
+  "name": "Backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Educept/Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Educept/Backend/issues"
+  },
+  "homepage": "https://github.com/Educept/Backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "firebase": "^4.3.1",
+    "mongoose": "^4.11.11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
