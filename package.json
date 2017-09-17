@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Educept/Backend#readme",
   "dependencies": {
     "body-parser": "^1.18.1",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "firebase": "^4.3.1",
     "mongoose": "^4.11.11",

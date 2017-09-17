@@ -3,6 +3,8 @@ const router = express.Router();
 const firebase = require('firebase');
 var database = firebase.database();
 var bodyParser = require('body-parser');
+const io = require('socket.io-client');
+var socket = io('http://0.0.0.0:8000');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var provider = new firebase.auth.GoogleAuthProvider();
 var userID;
@@ -144,6 +146,16 @@ firebase.database().ref('users/' + userID).set({
   res.send('data added');
 });
 });
+
+router.get('/getQuestion', function(req,res,next){
+  console.log('get req');
+  socket.emit('questions', [1,2,3])
+  socket.on('reply', function(data){
+    console.log(data);
+    res.send(data);
+  })
+})
+
 
 module.exports = router;
 // module.exports = uid;
