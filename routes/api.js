@@ -14,6 +14,8 @@ var userID;
 
 var userIDs = []
 var count = 0;
+var sites = []
+
 
 router.get('/questions', function(req,res,next){
   res.send('hello');
@@ -186,6 +188,16 @@ router.get('/getQuestion3', function(req,res,next){
   socket.emit('questions3', [1,2,3])
     // io2.emit('clientQ', toClient3);
     res.send(toClient3);
+})
+
+router.post('/makeitwhateveryouwant' , urlencodedParser , function(req,res,next){
+  sites =  req.body.sites;
+  console.log(sites);
+  res.send('success');
+})
+
+router.get('/makeitwhateveryouwant', function(req,res,next){
+  res.send(sites);
 })
 
 
