@@ -4,6 +4,9 @@ const firebase = require('firebase');
 var database = firebase.database();
 var bodyParser = require('body-parser');
 const io = require('socket.io-client');
+var server = require('http').Server(express());
+var io2 = require('socket.io')(server);
+server.listen(7000);
 var socket = io('http://0.0.0.0:8000');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -147,13 +150,21 @@ firebase.database().ref('users/' + userID).set({
 });
 });
 
+var toClient;
+socket.on('reply', function(data){
+  toClient = data;
+  console.log(data);
+})
+
 router.get('/getQuestion', function(req,res,next){
   console.log('get req');
+
   socket.emit('questions', [1,2,3])
-  socket.on('reply', function(data){
-    console.log(data);
-    res.send(data);
-  })
+
+    io2.emit('clientQ' , toClient);
+
+
+  res.end();
 })
 
 
