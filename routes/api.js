@@ -4,9 +4,9 @@ const firebase = require('firebase');
 var database = firebase.database();
 var bodyParser = require('body-parser');
 const io = require('socket.io-client');
-var server = require('http').Server(express());
-var io2 = require('socket.io')(server);
-server.listen(7000);
+// var server = require('http').Server(express());
+// var io2 = require('socket.io')(server);
+// server.listen(7000);
 var socket = io('http://0.0.0.0:8000');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -156,15 +156,36 @@ socket.on('reply', function(data){
   console.log(data);
 })
 
+var toClient2;
+socket.on('reply2', function(data){
+  toClient2 = data;
+  console.log(data);
+})
+//
+var toClient3;
+socket.on('reply3', function(data){
+  toClient3 = data;
+  console.log(data);
+})
+
 router.get('/getQuestion', function(req,res,next){
   console.log('get req');
+  socket.emit('questions', [1,2]);
+    // io2.emit('clientQ' , toClient);
+  // res.end();
+  res.send(toClient);
+})
 
-  socket.emit('questions', [1,2,3])
+router.get('/getQuestion2', function(req,res,next){
+  socket.emit('questions2', [1,2,3])
+    // io2.emit('clientQ', toClient2);
+    res.send(toClient2);
+})
 
-    io2.emit('clientQ' , toClient);
-
-
-  res.end();
+router.get('/getQuestion3', function(req,res,next){
+  socket.emit('questions3', [1,2,3])
+    // io2.emit('clientQ', toClient3);
+    res.send(toClient3);
 })
 
 
